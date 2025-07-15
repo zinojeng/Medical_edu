@@ -3,24 +3,14 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-interface Lecture {
-  slug: string
-  title: string
-  speaker: string
-  date: string
-  keywords: string[]
-  duration?: string
-  thumbnail?: string
-}
-
 export default function HomePage() {
-  const [lectures, setLectures] = useState<Lecture[]>([])
+  const [lectures, setLectures] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedKeyword, setSelectedKeyword] = useState('')
 
   useEffect(() => {
     // 模擬資料，實際應從 API 或檔案系統載入
-    const mockLectures: Lecture[] = [
+    const mockLectures = [
       {
         slug: 'cardiology-basics-2024',
         title: '心臟病學基礎概念與臨床應用',
@@ -97,22 +87,14 @@ export default function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredLectures.map(lecture => (
           <Link key={lecture.slug} href={`/lecture/${lecture.slug}`}>
-            <div className="lecture-card">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all duration-200 hover:-translate-y-1">
               {/* 縮圖區域 */}
               <div className="aspect-video bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                {lecture.thumbnail ? (
-                  <img 
-                    src={lecture.thumbnail} 
-                    alt={lecture.title}
-                    className="w-full h-full object-cover rounded-md"
-                  />
-                ) : (
-                  <div className="text-gray-400">
-                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm3 2h6v4H7V5zm8 8v2h1v-2h-1zm-2-2H7v4h6v-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                )}
+                <div className="text-gray-400">
+                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm3 2h6v4H7V5zm8 8v2h1v-2h-1zm-2-2H7v4h6v-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
               </div>
 
               {/* 演講資訊 */}
