@@ -1,8 +1,11 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'next/navigation'
 
 export default function LecturePage() {
-  const { slug } = useParams()
+  const params = useParams()
+  const slug = params.slug
   
   const [lectureData, setLectureData] = useState(null)
   const [activeTab, setActiveTab] = useState('transcript')
