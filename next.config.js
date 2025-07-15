@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 設定為靜態輸出模式
+  output: 'export',
+  
   // 禁用圖片最佳化
   images: {
     unoptimized: true
